@@ -32,9 +32,12 @@ public class Main {
             String city = scanner.nextLine();
             System.out.print("Введите вес (кг):  ");
             String weight = scanner.nextLine();
-            int shippingCost = costPerAddress.getOrDefault(new Address(country, city), 0) * Integer.parseInt(weight);
-            totalCost += shippingCost;
-            if (costPerAddress.containsKey(new Address(country, city))) {
+
+            Address addresDel = new Address(country, city);
+
+            if (costPerAddress.containsKey(addresDel)) {
+                int shippingCost = costPerAddress.get(addresDel) * Integer.parseInt(weight);
+                totalCost += shippingCost;
                 System.out.println("Стоимость доставки составит: " + shippingCost + " руб.");
                 countriesOfDelivery.add(country);
             } else {
